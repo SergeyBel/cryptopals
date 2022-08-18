@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Set1/Challenge3"
+    ]
+}

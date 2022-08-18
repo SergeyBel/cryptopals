@@ -88,24 +88,34 @@ def decrypt(bytes: bytearray, key: int):
         decrypted.append(c ^ key)
     return decrypted
 
-m = EnglishTextMetric()
-bytes = bytearray.fromhex('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736')
-min = 1000
-k = None
-for key in range(0, 256):
-    decrypted = decrypt(bytes, key)
-   
-    filteredDecrypted = filterNonAlphabetCharacters(decrypted, m.getAlphabet())
-    if filteredDecrypted == '':
-        continue
 
-    f = EnglishFrequency(filteredDecrypted)
-    metric = m.calculate(f)
-    if metric < min:
-        min = metric
-        k = key
-        d = decrypted
-print (k, min, d)
+class OneByteXorDecryptor:
+    def decrypt(self, hex: str):
+        m = EnglishTextMetric()
+        bytes = bytearray.fromhex(hex)
+        min = 1000
+        key = None
+        for k in range(0, 256):
+            decrypted = decrypt(bytes, k)
+   
+            filteredDecrypted = filterNonAlphabetCharacters(decrypted, m.getAlphabet())
+            if filteredDecrypted == '':
+                continue
+
+            f = EnglishFrequency(filteredDecrypted)
+            metric = m.calculate(f)
+            if metric < min:
+                min = metric
+                key = k
+                d = decrypted
+        return key, min, d
+
+
+if __name__ == "__main__":
+    hex = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+    d = OneByteXorDecryptor()
+    key, metric, text = d.decrypt(hex)
+    print (key, metric, text)
 
 
 
