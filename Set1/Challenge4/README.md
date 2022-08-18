@@ -4,5 +4,5 @@
 
 В результате получаем:  
 Зашифрованный текст: `32042f46431d2c44607934ed180c1028136a5f2b26092e3b2c4e2930585a`  
-Расшифрованный: `Now that the party is jumping\n`
+Расшифрованный: `Now that the party is jumping\n`  
 Ключ: `0x35`
