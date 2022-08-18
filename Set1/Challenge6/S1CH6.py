@@ -27,11 +27,9 @@ def hammingDistance(x: bytearray, y: bytearray)->int:
             dist += bytebyteBitsDiff(x[i], y[i])
     return dist
 
-   
-#print (hammingDistance(bytearray('this is a test', 'ascii'), bytearray('wokka wokka!!!', 'ascii')))
 
 
-def findKeyLength(text: bytearray)->int:
+def detectKeyLength(text: bytearray)->int:
     min = 1000
     length = None
     for keyLength in range (2, 41):
@@ -46,9 +44,7 @@ def findKeyLength(text: bytearray)->int:
     return length
 
 def transpose(text: bytearray, length: int):
-    lines = []
-    for i in range(length):
-        lines.append(bytearray())
+    lines = [bytearray() for i in range(length)]
     counter = 0
     for t in text:
         lines[counter].append(t)
@@ -67,7 +63,7 @@ with open('input.txt', 'r') as file:
     data = file.read()
 
 data = bytearray(base64.b64decode(data))
-keyLength = findKeyLength(data)
+keyLength = detectKeyLength(data)
 print ('KEYLENGTH=', keyLength)
 
 transposed = transpose(data, keyLength)

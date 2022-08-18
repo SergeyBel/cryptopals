@@ -6,7 +6,7 @@ class Base64:
 
     def encodeHex(self, hex: str)-> str:
         base64 = ''
-        for i in range(0, len(hex), self.THREE_BYTES_LENTH):
+        for i in range(len(hex), self.THREE_BYTES_LENTH):
             next24Bits = hex[i: i + self.THREE_BYTES_LENTH]
             base64 += self.__convert24BitsToSymbols(next24Bits)
         return base64

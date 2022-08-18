@@ -9,7 +9,6 @@ from S1CH3 import OneByteXorDecryptor
 d = OneByteXorDecryptor()
 with open('input.txt') as f:
     lines = f.read().splitlines()
-
 min = 1000
 decrypted = None
 key = None

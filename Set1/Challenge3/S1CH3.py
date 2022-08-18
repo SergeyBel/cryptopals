@@ -65,8 +65,8 @@ class EnglishTextMetric:
         metric = 0
 
         for c in frequency.getChars():
-            delta = abs(self.ENGLISH_FREQUENCY[c] - frequency.getFrequency(c))
-            metric += delta ** 2
+            delta = (self.ENGLISH_FREQUENCY[c] - frequency.getFrequency(c)) ** 2
+            metric += delta
 
         return metric
     
@@ -102,8 +102,7 @@ class OneByteXorDecryptor:
             if filteredDecrypted == '':
                 continue
 
-            f = EnglishFrequency(filteredDecrypted)
-            metric = m.calculate(f)
+            metric = m.calculate(EnglishFrequency(filteredDecrypted))
             if metric < min:
                 min = metric
                 key = k
