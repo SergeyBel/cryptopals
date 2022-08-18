@@ -1,0 +1,15 @@
+def xorEncrypt(text: bytearray, key: bytearray)-> bytearray:
+    encrypt = bytearray()
+    keyLength = len(key)
+    keyIndex = 0
+    for t in text:
+        encrypt.append(t ^ key[keyIndex])
+        keyIndex  = (keyIndex + 1) % keyLength
+    return encrypt
+
+
+text = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
+key = 'ICE'
+
+e = xorEncrypt(bytearray(text, 'ascii'), bytearray(key, 'ascii'))
+print (e.hex())
