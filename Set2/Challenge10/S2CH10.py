@@ -11,14 +11,14 @@ from FileReader import FileReader
 
 
 class AesCbc():
-    def encrypt(self, text: bytearray, key: bytearray, iv: bytearray):
+    def encrypt(self, data: bytearray, key: bytearray, iv: bytearray):
         aes = AesEcb()
         encrypted = bytearray()
         blockSize = 16
         previous = iv
-        for i in range(0, len(text), blockSize):
-            block = text[i: i + blockSize]
-            encryptedBlock = aes.encryptECB(xorBytes(block, previous), key)
+        for i in range(0, len(data), blockSize):
+            block = data[i: i + blockSize]
+            encryptedBlock = aes.encrypt(xorBytes(block, previous), key)
             encrypted.extend(encryptedBlock)
             previous = encryptedBlock
         return encrypted
@@ -30,7 +30,7 @@ class AesCbc():
         previous = iv
         for i in range(0, len(encrypted), blockSize):
             block = encrypted[i: i + blockSize]
-            decrypted.extend(xorBytes(aes.decryptECB(block, key), previous))
+            decrypted.extend(xorBytes(aes.decrypt(block, key), previous))
             previous = block
         return decrypted
     

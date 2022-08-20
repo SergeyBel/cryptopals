@@ -8,13 +8,13 @@ from Crypto.Cipher import AES
 
 
 class AesEcb():
-    def encryptECB(self, text: bytearray, key: bytearray):
+    def encrypt(self, data: bytearray, key: bytearray):
         aes = AES.new(key, AES.MODE_ECB)
-        return aes.encrypt(text)
+        return aes.encrypt(data)
     
-    def decryptECB(self, decrypted: bytearray, key: bytearray):
+    def decrypt(self, encrypted: bytearray, key: bytearray):
         aes = AES.new(key, AES.MODE_ECB)
-        return aes.decrypt(decrypted)
+        return aes.decrypt(encrypted)
         
 
 
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     data = f.readBase64('input.txt')
     key = b'YELLOW SUBMARINE'
     aes = AesEcb()
-    print (aes.decryptECB(data, key).decode('ascii'))
+    print (aes.decrypt(data, key).decode('ascii'))

@@ -5,28 +5,32 @@ from FileReader import FileReader
 
 
 
-def countBlocks(text: str):
-    length = 32
+def countDuplicateBlocks(data: bytes):
+    length = 16
     statistics = {}
 
-    for i in range(0, len(text), length):
-        part = text[:length]
+    for i in range(0, len(data), length):
+        part = data[i: i + length]
         if part in statistics.keys():
             statistics[part] += 1
         else:
             statistics[part] = 1
 
-        text = text[length:]
     return statistics
 
+def detectEcb(data: bytearray):
+    stat = countDuplicateBlocks(bytes(data))
+    for c in stat.keys():
+        if stat[c] >= 2:
+            return True
+
+    return False
 
 if __name__ == "__main__":
     f = FileReader()
     lines = f.readLines('input.txt')
     for hexLine in lines:
-        stat = countBlocks(hexLine)
-        for c in stat.keys():
-            if stat[c] >= 2:
-                print ('AES ECB ciphertext:', hexLine)
+        if detectEcb(bytearray.fromhex(hexLine)):
+            print ('AES ECB ciphertext:', hexLine)
     
     

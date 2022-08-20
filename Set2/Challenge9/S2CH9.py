@@ -1,11 +1,11 @@
 
 class Pkcs7():
-    def pad(self, bytes: bytearray, bytesLength: int):
-        bytesToAdd = bytesLength - (len(bytes) % bytesLength)
+    def pad(self, data: bytearray, bytesLength: int):
+        bytesToAdd = bytesLength - (len(data) % bytesLength)
         for i in range(bytesToAdd):
-            bytes.append(bytesToAdd)
+            data.append(bytesToAdd)
         
-        return bytes
+        return data
 
 if __name__ == "__main__":
     pad = Pkcs7()
