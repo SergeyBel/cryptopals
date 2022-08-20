@@ -1,7 +1,8 @@
+import sys
 
+sys.path.insert(1, '../../Common')
+from FileReader import FileReader
 
-with open('input.txt') as f:
-    lines = f.read().splitlines()
 
 
 def countBlocks(text: str):
@@ -19,11 +20,13 @@ def countBlocks(text: str):
     return statistics
 
 
-
-for hexLine in lines:
-    stat = countBlocks(hexLine)
-    for c in stat.keys():
-        if stat[c] >= 2:
-            print ('AES ECB ciphertext:', hexLine)
+if __name__ == "__main__":
+    f = FileReader()
+    lines = f.readLines('input.txt')
+    for hexLine in lines:
+        stat = countBlocks(hexLine)
+        for c in stat.keys():
+            if stat[c] >= 2:
+                print ('AES ECB ciphertext:', hexLine)
     
     

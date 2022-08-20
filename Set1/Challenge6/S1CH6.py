@@ -1,13 +1,13 @@
-import base64
 import sys
 
 
 sys.path.insert(1, '../Challenge3')
 sys.path.insert(1, '../Challenge5')
+sys.path.insert(1, '../../Common')
 
 from S1CH3 import OneByteXorDecryptor
 from S1CH5 import xorEncrypt
-
+from FileReader import FileReader
 
 
 def bytebyteBitsDiff(x: int, y: int)->int:
@@ -57,29 +57,29 @@ def findKey(transposed: list):
         k, metric, text = d.decrypt(transposed[i].hex())
         key.append(k)
     return key
-    
-with open('input.txt', 'r') as file:
-    data = file.read()
-
-data = bytearray(base64.b64decode(data))
-keyLength = detectKeyLength(data)
-print ('KEYLENGTH=', keyLength)
-
-transposed = transpose(data, keyLength)
-key = findKey(transposed)
-
-print('Key', key)
-print ("Decrypted:")
-decrypted = xorEncrypt(data, key)
-print (decrypted.decode("ascii"))
 
 
-#manual part
+if __name__ == "__main__":
+    f = FileReader()
+    data = f.readBase64('input.txt')
+    keyLength = detectKeyLength(data)
+    print ('KEYLENGTH=', keyLength)
 
-key = bytearray('Terminator X: Bring the noise', 'ascii')
-print ("Decrypted:")
-decrypted = xorEncrypt(data, key)
-print (decrypted.decode("ascii"))
+    transposed = transpose(data, keyLength)
+    key = findKey(transposed)
+
+    print('Key', key)
+    print ("Decrypted:")
+    decrypted = xorEncrypt(data, key)
+    print (decrypted.decode("ascii"))
+
+
+    #manual part
+
+    key = bytearray('Terminator X: Bring the noise', 'ascii')
+    print ("Decrypted:")
+    decrypted = xorEncrypt(data, key)
+    print (decrypted.decode("ascii"))
 
 
 

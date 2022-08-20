@@ -7,9 +7,9 @@ def xorEncrypt(text: bytearray, key: bytearray)-> bytearray:
         keyIndex  = (keyIndex + 1) % keyLength
     return encrypt
 
+if __name__ == "__main__":
+    text = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
+    key = 'ICE'
 
-text = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
-key = 'ICE'
-
-e = xorEncrypt(bytearray(text, 'ascii'), bytearray(key, 'ascii'))
-print (e.hex())
+    e = xorEncrypt(bytearray(text, 'ascii'), bytearray(key, 'ascii'))
+    print (e.hex())

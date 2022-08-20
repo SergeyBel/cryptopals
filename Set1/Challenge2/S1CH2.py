@@ -8,8 +8,8 @@ def xorBytes(x: bytearray, y:bytearray)->bytearray:
     return c
     
 
-
-x = bytearray.fromhex(input())
-y = bytearray.fromhex(input())
-c = xorBytes(x, y)
-print(c.hex())
+if __name__ == "__main__":
+    x = bytearray.fromhex(input())
+    y = bytearray.fromhex(input())
+    c = xorBytes(x, y)
+    print(c.hex())

@@ -1,7 +1,10 @@
 {
     "python.analysis.extraPaths": [
         "./Set1/Challenge3",
-        "./Set1/Challenge5"
+        "./Set1/Challenge5",
+        "./Set1/Challenge7",
+        "./Set1/Challenge2",
+        "./Common"
     ],
     "python.pythonPath": "C:\\Program Files (x86)\\Python38-32\\python.exe"
 }

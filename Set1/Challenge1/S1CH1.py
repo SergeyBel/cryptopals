@@ -6,7 +6,7 @@ class Base64:
 
     def encodeHex(self, hex: str)-> str:
         base64 = ''
-        for i in range(len(hex), self.THREE_BYTES_LENTH):
+        for i in range(0, len(hex), self.THREE_BYTES_LENTH):
             next24Bits = hex[i: i + self.THREE_BYTES_LENTH]
             base64 += self.__convert24BitsToSymbols(next24Bits)
         return base64
@@ -42,6 +42,7 @@ class Base64:
         return symbols
     
 
-hex = input()
-b = Base64()
-print (b.encodeHex(hex))
+if __name__ == "__main__":
+    b = Base64()
+    hex = '49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d'
+    print (b.encodeHex(hex))

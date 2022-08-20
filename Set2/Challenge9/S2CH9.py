@@ -7,6 +7,7 @@ class Pkcs7():
         
         return bytes
 
-pad = Pkcs7()
-bytes = bytearray('YELLOW SUBMARINE', 'ascii')
-print (pad.pad(bytes, 20))
+if __name__ == "__main__":
+    pad = Pkcs7()
+    bytes = bytearray('YELLOW SUBMARINE', 'ascii')
+    print (pad.pad(bytes, 20))

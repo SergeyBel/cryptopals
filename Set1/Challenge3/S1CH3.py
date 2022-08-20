@@ -1,7 +1,3 @@
-import string
-import math
-
-
 class EnglishFrequency:
     def __init__(self, text: str) -> None:
         self.data = {}
