@@ -1,4 +1,4 @@
-def xorBytes(x: bytearray, y:bytearray)->bytearray:
+def xorBytes(x: bytearray, y: bytearray)->bytearray:
     c = bytearray()
     if (len(x) != len(y)):
         raise Exception('Different length')

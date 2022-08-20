@@ -1,7 +1,7 @@
 import sys
 
-sys.path.insert(1, '../Challenge3')
-sys.path.insert(1, '../../Common')
+sys.path.append('../Challenge3')
+sys.path.append('../../Common')
 
 from S1CH3 import OneByteXorDecryptor
 from FileReader import FileReader

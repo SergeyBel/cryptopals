@@ -1,6 +1,7 @@
 import sys
 
-sys.path.insert(1, '../../Common')
+sys.path.append('../../Common')
+
 from FileReader import FileReader
 from Crypto.Cipher import AES
 
