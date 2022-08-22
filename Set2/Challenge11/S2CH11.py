@@ -1,28 +1,20 @@
-from random import randint
 import sys
-
 
 
 sys.path.append('../../Set1/Challenge7')
 sys.path.append('../../Set1/Challenge8')
 sys.path.append('../Challenge9')
 sys.path.append('../Challenge10')
+sys.path.append('../../Common/Random')
 
 
 from S1CH7 import AesEcb
 from S2CH10 import AesCbc
 from S2CH9 import Pkcs7
 from S1CH8 import detectEcb
+from Random import Random
 
-class Random:
-    def getInt(self, start: int, finish: int): 
-        return randint(start, finish)
 
-    def getBytes(self, length: int):
-        bytes = bytearray()
-        for i in range(length):
-            bytes.append(self.getInt(0, 255))
-        return bytes
 
 class EcbOrCbcOracle():
     def __init__(self) -> None:

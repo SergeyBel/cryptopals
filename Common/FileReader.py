@@ -11,3 +11,4 @@ class FileReader():
             data = file.read()
 
         return bytearray(base64.b64decode(data))
+
