@@ -16,3 +16,10 @@
 1. Теперь перебираем возможные символы, дописываем символ в конец сообщения и посылаем полный блок 'AAAA...AB', 'AAAA...AC', 'AAAA...AD',...
 1. Если символ совпадёт с первым символом из `unknown-string`, то мы получим тот же шифротекст, который получили на втором шаге
 1. Продолжая действия для остальных символов, полностью восстанавливаем `unknown-string`
+
+```
+Rollin' in my 5.0
+With my rag-top down so my hair can blow
+The girlies on standby waving just to say hi
+Did you stop? No, I just drove by
+```
