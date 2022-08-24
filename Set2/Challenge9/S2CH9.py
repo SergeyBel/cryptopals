@@ -10,6 +10,8 @@ class Pkcs7():
     def unpad(self, data: bytearray)->bytearray:
         lastByte = data[-1]
         length = int(lastByte)
+        if (length < 1 or length > 16):
+            raise Exception('incorrect pkcs7 padding')
         for i in range(length):
             if data[len(data) - i - 1] != lastByte:
                 raise Exception('incorrect pkcs7 padding')
