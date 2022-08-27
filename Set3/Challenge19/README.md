@@ -48,7 +48,7 @@ To some who are near my heart,
 Yet I number him in the song;
 He, too, has resigned his part
 In the casual comedy;
-He, too, has been changed in his turn.
+He, too, has been changed in his turn,
 Transformed utterly:
 A terrible beauty is born.
 ```
