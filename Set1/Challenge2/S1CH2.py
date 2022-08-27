@@ -1,7 +1,7 @@
 def xorBytes(x: bytearray, y: bytearray)->bytearray:
     c = bytearray()
     if (len(x) != len(y)):
-        raise Exception('Different length')
+        raise Exception('Different length: ' + str(len(x)) + ' ' + str(len(y)))
     length = len(x)
     for i in range(length):
         c.append(x[i] ^ y[i])
