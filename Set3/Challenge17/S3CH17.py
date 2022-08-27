@@ -1,5 +1,4 @@
 import sys
-from tarfile import BLOCKSIZE
 
 
 sys.path.append('../../Set2/Challenge9')
