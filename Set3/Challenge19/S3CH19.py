@@ -73,22 +73,23 @@ if __name__ == "__main__":
     
     print("Auto decrypt:")
     data = bytearray()
-    for i in range(len(enc)):
-        data += enc[i][:16]
+    keyLength = 16
+    for t in enc:
+        data += t[:keyLength]
 
 
     d = RepeatedXorDecryptor()
-    keyLength = 16
+    
     key1 = d.findKey(data, keyLength)
     
     print('Key', key1.hex())
     for t in enc:
-        print(xorBytes(t[:16], key1))
+        print(xorBytes(t[:keyLength], key1))
 
     
 
     print("Manual decrypt:")
-    key = bytearray.fromhex('76d1cb4bafa246e2e3af035d6c13c372d2ec6cdc986d12decfda1f93afee73182da08ecb1179')
+    key = bytearray.fromhex('76d1cb4bafa246e2e3af035d6c13c372d2ec6cdc986d12decfda1f93afee73182da08ecb117b')
 
 
     for t in enc:
