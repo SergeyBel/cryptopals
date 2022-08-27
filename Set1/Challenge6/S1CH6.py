@@ -65,7 +65,7 @@ class RepeatedXorDecryptor:
 
 if __name__ == "__main__":
     f = FileReader()
-    data = f.readBase64('input.txt')
+    data = f.readBase64Line('input.txt')
     decryptor = RepeatedXorDecryptor()
     keyLength = decryptor.detectKeyLength(data)
     print ('KEYLENGTH=', keyLength)

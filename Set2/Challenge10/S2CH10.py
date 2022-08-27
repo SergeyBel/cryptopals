@@ -38,7 +38,7 @@ class AesCbc():
 if __name__ == "__main__":
     f = FileReader()
     a = AesCbc()
-    data = f.readBase64('input.txt')
+    data = f.readBase64Line('input.txt')
     key = b'YELLOW SUBMARINE'
     iv = bytearray(0x0 for i in range(16))
     print(a.decrypt(data, key, iv))

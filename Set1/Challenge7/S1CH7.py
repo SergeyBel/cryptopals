@@ -20,7 +20,7 @@ class AesEcb():
 
 if __name__ == "__main__":
     f = FileReader()
-    data = f.readBase64('input.txt')
+    data = f.readBase64Line('input.txt')
     key = b'YELLOW SUBMARINE'
     aes = AesEcb()
     print (aes.decrypt(data, key).decode('ascii'))
