@@ -1,7 +1,7 @@
 import sys
 
 
-sys.path.append('../../Set1/Common')
+sys.path.append('../../Common')
 sys.path.append('../../Set1/Challenge2')
 sys.path.append('../../Set1/Challenge6')
 sys.path.append('../../Set3/Challenge19')
