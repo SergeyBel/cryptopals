@@ -30,6 +30,10 @@ class MersenneTwister:
         for i in range(1, self.n):
             self.mt[i] = self.__lowestWBits(self.f * (self.mt[i - 1] ^ (self.mt[i - 1] >> (self.w - 2))) + i)
 
+    def seedByState(self, mt: list):
+        self.index = 0
+        self.mt = mt.copy()
+
     
     def getRandomNumber(self) -> int:
         if self.index > self.n:
