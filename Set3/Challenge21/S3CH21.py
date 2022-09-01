@@ -22,11 +22,11 @@ class MersenneTwister:
         self.f = 1812433253
 
 
-        self.index = self.n
         self.mt = [None for i in range(self.n)]
         
     def seed(self, seed: int):
         self.mt[0] = seed
+        self.index = self.n
         for i in range(1, self.n):
             self.mt[i] = self.__lowestWBits(self.f * (self.mt[i - 1] ^ (self.mt[i - 1] >> (self.w - 2))) + i)
 
