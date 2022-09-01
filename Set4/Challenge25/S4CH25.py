@@ -3,7 +3,7 @@ import sys
 sys.path.append('../../Set3/Challenge18')
 sys.path.append('../../Set1/Challenge2')
 sys.path.append('../../Common/FileReader')
-sys.path.append('../../Common/Random')
+sys.path.append('../../Common/')
 from S3CH18 import AesCtr
 from S1CH2 import xorBytes
 from FileReader import FileReader
