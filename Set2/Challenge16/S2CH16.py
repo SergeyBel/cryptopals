@@ -3,7 +3,7 @@ import sys
 
 sys.path.append('../Challenge9')
 sys.path.append('../Challenge10')
-sys.path.append('../../Common/Random')
+sys.path.append('../../Common')
 
 
 from S2CH10 import AesCbc
