@@ -1,9 +1,7 @@
-import hashlib
-
 
 class Sha1():
     def hash(self, data: bytearray)->bytearray:
-        paddedData = self.__pad(data)
+        paddedData = self.pad(data)
         h0 = 0x67452301
         h1 = 0xEFCDAB89
         h2 = 0x98BADCFE
@@ -12,6 +10,9 @@ class Sha1():
 
         state = [h0, h1, h2, h3, h4]
 
+        return self.processData(state, paddedData)
+    
+    def processData(self, state: list, paddedData: bytearray):
         for i in range(0, len(paddedData), 64):
             state = self.__processBlock(state, paddedData[i: i + 64])
         
@@ -20,6 +21,7 @@ class Sha1():
             hash.extend(state[i].to_bytes(4, 'big'))
         
         return hash
+
 
     def __processBlock(self, state: list, block: bytearray)->list:
         w = [0] * 80
@@ -78,7 +80,7 @@ class Sha1():
         mask = 0xffffffff
         return (x + y) & mask
 
-    def __pad(self, data: bytearray):
+    def pad(self, data: bytearray):
         length = len(data) * 8
         paddedData = bytearray(data)
         paddedData.append(0x80)
