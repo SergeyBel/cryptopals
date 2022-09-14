@@ -1,5 +1,5 @@
 
-class Sha1():
+class Sha1:
     def hash(self, data: bytearray)->bytearray:
         paddedData = self.pad(data)
         h0 = 0x67452301
