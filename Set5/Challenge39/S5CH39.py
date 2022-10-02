@@ -27,10 +27,10 @@ class Rsa:
         return self.e, self.n
     
     def encrypt(self, number: int)->int:
-        return pow(number, self.d, self.n)
+        return pow(number, self.e, self.n)
     
     def decrypt(self, encrypted: int)->int:
-        return pow(encrypted, self.e, self.n)
+        return pow(encrypted, self.d, self.n)
 
 
 
