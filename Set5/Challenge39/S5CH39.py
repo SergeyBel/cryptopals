@@ -3,11 +3,11 @@ import math
 
 
 class Rsa:
-    def __init__(self) -> None:
+    def __init__(self, bits=64) -> None:
         self.e = 3
         self.n = None
         self.d = None
-        self.generateKeys(64)
+        self.generateKeys(bits)
         
     
     def generateKeys(self, bits):
