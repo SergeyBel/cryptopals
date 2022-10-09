@@ -1,5 +1,4 @@
 import sys
-import math
 
 sys.path.append('../../Set5/Challenge39')
 
