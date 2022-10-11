@@ -1,6 +1,6 @@
 import base64
 
-class FileReader():
+class FileReader:
     def readLines(self, filename: str)-> list:
         with open(filename) as f:
             lines = f.read().splitlines()

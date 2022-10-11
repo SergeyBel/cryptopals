@@ -6,13 +6,7 @@ sys.path.append('../../Common')
 
 
 from Random import Random
-
-class IntConverter:
-    def bytesToInt(self, bytes: bytearray):
-        return int.from_bytes(bytes, 'big')
-    
-    def intToBytes(self, value: int):
-        return value.to_bytes(1024, 'big')
+from IntConverter import IntConverter
 
 class SreServer:
     def __init__(self, n, g, k) -> None:

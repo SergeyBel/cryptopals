@@ -2,8 +2,10 @@ import sys
 import hashlib
 
 sys.path.append('../../Set5/Challenge36')
+sys.path.append('../../Common')
 
-from S5CH36 import IntConverter, SreClient, SreServer
+from S5CH36 import SreClient, SreServer
+from IntConverter import IntConverter
 
 if __name__ == "__main__":
     N = """00:c0:37:c3:75:88:b4:32:98:87:e6:1c:2d:a3:32:

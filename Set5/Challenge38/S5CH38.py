@@ -6,7 +6,7 @@ import hashlib
 sys.path.append('../../Common')
 sys.path.append('../../Set5/Challenge36')
 
-from S5CH36 import IntConverter
+from IntConverter import IntConverter
 
 
 from Random import Random
