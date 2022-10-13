@@ -14,8 +14,7 @@ class BleichenbacherOracle:
         self.converter = IntConverter()
         self.rsa = rsa
         self.hashLen = 20
-        self.hash = Sha1()
-        
+        self.hash = Sha1()        
     
     def verify(self, signature, message):
         packet = self.converter.intToBytes(self.rsa.encrypt(signature))
@@ -27,12 +26,29 @@ class BleichenbacherOracle:
             raise Exception('hash check failed')
         
         return True
+
+def cubeRoot(number):
+    start = 0
+    finish = number
+
+    while (True):
+        mid = (start + finish) // 2
+        cube = pow(mid, 3)
+        if (cube  > number):
+            finish = mid
+        elif (cube < number):
+            start = mid
+        else:
+            return mid
+        if (finish - start <= 1):
+            break
         
+    return finish
 
 
 if __name__ == "__main__":
     sha = Sha1()
-    bits = 128
+    bits = 1024
     rsa = Rsa(bits)
     converter = IntConverter()
 
@@ -48,4 +64,12 @@ if __name__ == "__main__":
 
     oracle = BleichenbacherOracle(rsa)
     print('Verify: ', oracle.verify(signature, message))
+
+    forgePacket =  b'\x00\x01' + b'\x00' + hash + b'\x00' * (packetLen - len(hash) - 3)
+    num = converter.bytesToInt(forgePacket)
+    forgeSignature = cubeRoot(num)
+    print('Verify forge:', oracle.verify(forgeSignature, message))
+    print('Signatuer == Forge:', signature == forgeSignature)
+
+
 
