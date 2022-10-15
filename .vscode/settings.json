@@ -15,7 +15,8 @@
         "./Set4/Challenge28",
         "./Set5/Challenge33",
         "./Set5/Challenge36",
-        "./Set5/Challenge39"
+        "./Set5/Challenge39",
+        "./Set6/Challenge43"
     ],
     "python.pythonPath": "C:\\Program Files (x86)\\Python38-32\\python.exe"
 }

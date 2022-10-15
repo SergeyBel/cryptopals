@@ -73,6 +73,7 @@ if __name__ == "__main__":
         x = (pow(r, -1, q) * (k * s - h)) % q
         if pow(g, x, p) == y:
             print ('Find key', x)
+            print ('Key hash: ', sha1.hash(hex(x)[2:].encode()).hex())
             print ('Public key check: ', hex(pow(g, x, p)))
             break
 
