@@ -23,21 +23,25 @@ class Dsa:
         self.x = self.random.getInt(1, self.q - 1)
         self.y = pow(self.g, self.x, self.p)
     
+    def setParameters(self, p, g, q):
+        self.p = p
+        self.g = g
+        self.q = q
+        self.generateKeys()
+    
+    def setY(self):
+        self.y = y
+
+    
     def getPublicKey(self):
         return self.p, self.g, self.q, self.y
 
     
     def sign(self, hash: bytearray):
         h = self.converter.bytesToInt(hash)
-        while True:
-            k = self.random.getInt(1, self.q - 1)
-            r = pow(self.g, k, self.p) % self.q
-            if r == 0:
-                continue
-            s = (pow(k, -1, self.q) * (h + self.x * r)) % self.q
-            if s == 0:
-                continue
-            break
+        k = self.random.getInt(1, self.q - 1)
+        r = pow(self.g, k, self.p) % self.q
+        s = (pow(k, -1, self.q) * (h + self.x * r)) % self.q
         return r, s
         
     
@@ -53,10 +57,10 @@ class Dsa:
 
 if __name__ == "__main__":
     dsa = Dsa()
-    text = bytearray('Hi world', 'ascii')
+
     sha1 = Sha1()
     converter = IntConverter()
-    hash = sha1.hash(text)
+    hash = sha1.hash(b'Hi world')
     r, s = dsa.sign(hash)
     print('Sign-Verify test: ', dsa.verify(hash, r, s))
 
