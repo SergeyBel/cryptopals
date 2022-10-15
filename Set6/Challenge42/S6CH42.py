@@ -9,6 +9,7 @@ from S5CH39 import Rsa
 from IntConverter import IntConverter
 from S4CH28 import Sha1
 
+
 class BleichenbacherOracle:
     def __init__(self, rsa: Rsa) -> None:
         self.converter = IntConverter()
