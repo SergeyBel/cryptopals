@@ -1,6 +1,5 @@
 import base64
 import sys
-import math
 from decimal import *
 
 sys.path.append('../../Set5/Challenge39')
