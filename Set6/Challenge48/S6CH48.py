@@ -61,6 +61,7 @@ def findS(start, oracle, c, e, n):
 
         s += 1
     
+    print('s=', s)
     return s
 
 def unionOneSegment(segment, s, n, B):
@@ -70,24 +71,19 @@ def unionOneSegment(segment, s, n, B):
     r1 = (a * s - 3 * B + 1) // n
     r2 = (b * s - 2 * B) // n
 
-    print('r', r1, r2, r2 - r1)
-
     newSegments = set()
 
     for r in range(r1, r2 + 1):
         start = max(a, ceil((2 * B + r * n), s))
         finish = min(b, (3 * B - 1 + r * n) // s)
-        print(start, finish)
         if (start <= finish):
             sgm = Segment(start, finish)
             if sgm not in newSegments:
-                print(sgm)
                 newSegments.add(sgm)
     
     return newSegments
 
 def union(M, s, n, B):
-    print('union')
     newM = set()
     for segment in M:
         newM = newM.union(unionOneSegment(segment, s, n, B))
@@ -95,7 +91,7 @@ def union(M, s, n, B):
     return newM
 
 
-def printM(M):
+def printSegments(M):
     for segment in M:
         print(segment, segment.length(),)
     print()
@@ -104,10 +100,13 @@ def printM(M):
 def findSForOneSegment(a, b, sPrev, B, c, e, n):
     r = 2 * (b * sPrev - B) // n
 
+    print('r=', r)
+
     while True:
         for s in range((2 * B + r * n) // b, (3 * B + r * n) // a + 1):
             cn = c * pow(s, e, n)
             if oracle.isCorrect(cn):
+                print('s=', s)
                 return s
         r += 1
 
@@ -115,7 +114,7 @@ def findSForOneSegment(a, b, sPrev, B, c, e, n):
 
 
 if __name__ == "__main__":
-    k = 6
+    k = 96
     B = 2 ** (8 * (k - 2))
     oracle = PkcsRsaOracle(k)
     converter = IntConverter()
@@ -128,42 +127,34 @@ if __name__ == "__main__":
     
     c = oracle.rsa.encrypt(number)
 
+    print('Start')
+
     M = set([Segment(2 * B, 3 * B)])
 
-    print('Start find s1')
     s = findS(n // (3 * B), oracle, c, e, n)
-    print('s1 = ', s)
     M = union(M, s, n, B)
-    printM(M)
- 
 
 
     while True:
-        if len(M) == 0:
-            print('LEN = 0')
-            break
+        printSegments(M)
         if (len(M) >= 2):
-            print('two')
+            print('two or more segments')
             s = findS(s + 1, oracle, c, e, n)
-            print('s = ', s)
             M = union(M, s, n, B)
-            printM(M)
             continue
         elif (len(M) == 1):
-            print('one')
+            print('one segment')
             segment = M.pop()
             M.add(segment)
             if segment.isPoint():
-                print ('finded')
+                print ('finish search')
                 break
             s = findSForOneSegment(segment.a, segment.b, s, B, c, e, n)
             M = union(M, s, n, B)
-            print('After one')
-            printM(M)
             continue
     
     print('Number=', number)
-    printM(M)
+    printSegments(M)
     
     
 
