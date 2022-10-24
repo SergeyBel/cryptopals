@@ -19,4 +19,7 @@ if __name__ == "__main__":
             min = m
             decrypted = text
             key = k
-    print(hexLine, decrypted, key)
+    print('Encrypted:', hexLine)
+    print('Key:', hex(key))
+    print('Decrypted:', decrypted.decode('ascii'))
+    
