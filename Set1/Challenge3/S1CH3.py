@@ -57,7 +57,7 @@ class EnglishTextMetric:
      ' ': 0.1918182
     }
 
-    def calculate(self, frequency: EnglishFrequency):
+    def calculate(self, frequency: EnglishFrequency)->float:
         metric = 0
 
         for c in frequency.getChars():
@@ -78,7 +78,7 @@ def filterNonAlphabetCharacters(text: str, alphabet: list)->str:
     return filteredText
 
 
-def decrypt(bytes: bytearray, key: int):
+def decrypt(bytes: bytearray, key: int)->bytearray:
     decrypted = bytearray()
     for c in bytes:
         decrypted.append(c ^ key)
@@ -107,10 +107,12 @@ class OneByteXorDecryptor:
 
 
 if __name__ == "__main__":
-    hex = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+    encrypted = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
     d = OneByteXorDecryptor()
-    key, metric, text = d.decrypt(hex)
-    print (key, metric, text)
+    key, metric, text = d.decrypt(encrypted)
+    print('Key:', hex(key))
+    print('Metric:', metric)
+    print('Text:', text.decode('ascii'))
 
 
 
