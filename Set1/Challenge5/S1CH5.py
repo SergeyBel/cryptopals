@@ -12,4 +12,4 @@ if __name__ == "__main__":
     key = 'ICE'
 
     e = xorEncrypt(bytearray(text, 'ascii'), bytearray(key, 'ascii'))
-    print (e.hex())
+    print ('Encrypted:', e.hex())
