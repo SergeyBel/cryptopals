@@ -9,7 +9,9 @@ def xorBytes(x: bytearray, y: bytearray)->bytearray:
     
 
 if __name__ == "__main__":
-    x = bytearray.fromhex(input())
-    y = bytearray.fromhex(input())
+    x = bytearray.fromhex('abcd')
+    y = bytearray.fromhex('1234')
     c = xorBytes(x, y)
-    print(c.hex())
+    print('x:', x.hex())
+    print('y:', y.hex())
+    print('x xor y:', c.hex())
