@@ -27,7 +27,7 @@ class RepeatedXorDecryptor:
         return length
 
 
-    def findKey(self, text: bytearray, keyLength: int):
+    def findKey(self, text: bytearray, keyLength: int)->bytearray:
         transposed = self.__transpose(text, keyLength)
         d = OneByteXorDecryptor()
         key = bytearray()
@@ -36,7 +36,7 @@ class RepeatedXorDecryptor:
             key.append(k)
         return key
     
-    def __transpose(self, text: bytearray, length: int):
+    def __transpose(self, text: bytearray, length: int)->list:
         lines = [bytearray() for i in range(length)]
         counter = 0
         for t in text:
@@ -68,10 +68,10 @@ if __name__ == "__main__":
     data = f.readBase64Line('input.txt')
     decryptor = RepeatedXorDecryptor()
     keyLength = decryptor.detectKeyLength(data)
-    print ('KEYLENGTH=', keyLength)
+    print ('Key length:', keyLength)
     key = decryptor.findKey(data, keyLength)
 
-    print('Key', key)
+    print('Key:', key.hex())
     print ("Decrypted:")
     decrypted = xorEncrypt(data, key)
     print (decrypted.decode("ascii"))
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     #manual part
 
     key = bytearray('Terminator X: Bring the noise', 'ascii')
-    print ("Decrypted:")
+    print ("Decrypted manual:")
     decrypted = xorEncrypt(data, key)
     print (decrypted.decode("ascii"))
 
