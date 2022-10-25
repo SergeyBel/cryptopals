@@ -1,6 +1,5 @@
 import sys
 
-
 sys.path.append('../../Set4/Challenge28')
 
 from S4CH28 import Sha1, Sha1PrefixMac
@@ -28,5 +27,5 @@ if __name__ == "__main__":
 
     forgedMac = sha1.processData(state, newSha1StateText[newSha1StateText.find(b';admin=true'):])
 
-    print (oracle.mac(paddedText[paddedText.find(text):] +  b';admin=true') == forgedMac)
+    print ('Mac forged:', oracle.mac(paddedText[paddedText.find(text):] +  b';admin=true') == forgedMac)
 
