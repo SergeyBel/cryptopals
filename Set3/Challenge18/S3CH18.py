@@ -40,4 +40,4 @@ if __name__ == "__main__":
     key = b"YELLOW SUBMARINE"
     nonce = 0
     data = base64.b64decode('L77na/nrFsKvynd6HzOoG7GHTLXsTVu9qvY/2syLXzhPweyyMTJULu/6/kXX0KSvoOLSFQ==')
-    print(aes.decrypt(data, key, nonce))
+    print('Decrypted:', aes.decrypt(data, key, nonce).decode('ascii'))
