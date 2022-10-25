@@ -24,13 +24,13 @@ class MersenneTwister:
 
         self.mt = [None for i in range(self.n)]
         
-    def seed(self, seed: int):
+    def seed(self, seed: int)->None:
         self.mt[0] = seed
         self.index = self.n
         for i in range(1, self.n):
             self.mt[i] = self.__lowestWBits(self.f * (self.mt[i - 1] ^ (self.mt[i - 1] >> (self.w - 2))) + i)
 
-    def seedByState(self, mt: list):
+    def seedByState(self, mt: list)->None:
         self.index = 0
         self.mt = mt.copy()
 
@@ -53,7 +53,7 @@ class MersenneTwister:
         return self.__lowestWBits(y)
 
     
-    def __twist(self):
+    def __twist(self)->None:
         lowerMask = (1 << self.r) - 1
         upperMask = self.__lowestWBits(~lowerMask)
         for i in range(self.n):
@@ -64,7 +64,7 @@ class MersenneTwister:
             self.mt[i] = self.mt[(i + self.m) % self.n] ^ xA
         self.index = 0
 
-    def __lowestWBits(self, x):
+    def __lowestWBits(self, x)->int:
         mask = (1 << self.w) - 1
         return x & mask
 
