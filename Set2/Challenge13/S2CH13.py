@@ -13,7 +13,7 @@ from Random import Random
 
 
 class UserEncoder:
-    def encode(self, email: str):
+    def encode(self, email: str)->dict:
         return 'email=' + email + '&uid=10&role=user' 
     def decode(self, decoded):
         return dict(urllib.parse.parse_qsl(decoded))
@@ -26,12 +26,12 @@ class UserOracle():
         self.key = Random().getBytes(16)
 
     
-    def encrypt(self, email: str):
+    def encrypt(self, email: str)->bytes:
         email = email.replace('&', '').replace('=', '')
         enc = self.padding.pad(bytearray(self.encoder.encode(email), 'ascii'), 16)
         return self.aes.encrypt(enc, self.key)
     
-    def decrypt(self, encrypted: bytearray):
+    def decrypt(self, encrypted: bytearray)->bytes:
         dec = self.padding.unpad(self.aes.decrypt(encrypted, self.key))
         return self.encoder.decode(dec.decode('ascii'))
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     hackEmail = 'A' * 13
     enc2 = oracle.encrypt(hackEmail)
     hack = enc2[:32] + adminBlock
-    print(oracle.decrypt(hack))
+    print('Oracle answer:', oracle.decrypt(hack))
 
 
 
