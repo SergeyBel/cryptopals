@@ -29,7 +29,7 @@ if __name__ == "__main__":
     oracle = EditCtrOracle()
     encrypted = oracle.encrypt(data)
     key = oracle.edit(encrypted, 0, bytearray(b'\x00') * len(encrypted))
-    print (xorBytes(encrypted, key) == data)
+    print('Decrypt correct:', xorBytes(encrypted, key) == data)
     
 
 
