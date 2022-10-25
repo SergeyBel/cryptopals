@@ -18,9 +18,9 @@ y = y ^ (y >> l)
 
 Обозначим $x_i, y_i, m_i$ - i-ый бит числа x,y,m соответственно, тогда из формулы следует  
 $x_i = y_i, i = 0, \dots, k - 1$  
-$x_i = y_i \oplus y_{i - k} \land m_i i = k, \dots, 31$    
+$x_i = y_i \oplus y_{i - k} \land m_i,  i = k, \dots, 31$    
 И получаем формулы для y:    
  
-$y_i = x_i, i = 0, \dots, k - 1$  
-$y_i = x_i \oplus y_{i - k} \land m_i i = k, \dots, 31$  
+$y_i = x_i,$ $i = 0, \dots, k - 1$  
+$y_i = x_i \oplus y_{i - k} \land m_i,$ $i = k, \dots, 31$  
 
