@@ -13,7 +13,7 @@ class MtTimeOracle:
         seed = int(time.time()) + random.randint(40, 1000)
         self.rng.seed(seed)
 
-    def getRandom(self):
+    def getRandom(self)->int:
         return self.rng.getRandomNumber()
 
 if __name__ == "__main__":
@@ -25,7 +25,8 @@ if __name__ == "__main__":
         rng.seed(timestamp)
         number = rng.getRandomNumber()
         if  number == output:
-            print('Seed=', timestamp, number, output)
+            print('Seed=', timestamp)
+            print('Numbers predict correct:',number == output)
             break
         timestamp -= 1
 
