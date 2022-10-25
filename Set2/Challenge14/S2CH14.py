@@ -1,10 +1,6 @@
-
 import sys
 import base64
 import string
-
-
-
 
 sys.path.append('../../Set1/Challenge7')
 sys.path.append('../Challenge9')
@@ -28,7 +24,7 @@ class EcbPrefixOracle():
 
 
 # find two consecutive duplicate blocks and detect prefix length by it
-def detectPrefixLength(oracle: EcbPrefixOracle):
+def detectPrefixLength(oracle: EcbPrefixOracle)->int:
     blockSize = 16
     for i in range(1, 256):
         text = bytearray('A' * i, 'ascii')
@@ -64,5 +60,5 @@ if __name__ == "__main__":
                 answer.append(ord(c))
                 break
     
-    print(answer.decode('ascii'))
+    print('Decrypted:', answer.decode('ascii'))
 
