@@ -1,6 +1,6 @@
 
 class Pkcs7():
-    def pad(self, data: bytearray, bytesLength: int):
+    def pad(self, data: bytearray, bytesLength: int)->bytearray:
         bytesToAdd = bytesLength - (len(data) % bytesLength)
         for i in range(bytesToAdd):
             data.append(bytesToAdd)
@@ -26,5 +26,5 @@ if __name__ == "__main__":
     pad = Pkcs7()
     bytes = bytearray('YELLOW SUBMARINE', 'ascii')
     padded = pad.pad(bytes, 20)
-    print(padded)
-    print(pad.unpad(padded))
+    print('Padded:', padded)
+    print('Unpadded:', pad.unpad(padded))
