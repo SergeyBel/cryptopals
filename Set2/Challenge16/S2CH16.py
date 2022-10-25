@@ -17,7 +17,7 @@ class CbcBitFlipOracle:
         self.aes = AesCbc()
         self.padding = Pkcs7()
     
-    def encrypt(self, text: str):
+    def encrypt(self, text: str)->bytes:
         prefix = 'comment1=cooking%20MCs;userdata='
         postfix = ';comment2=%20like%20a%20pound%20of%20bacon'
         text = text.replace('=', "'='")
@@ -26,7 +26,7 @@ class CbcBitFlipOracle:
         return self.aes.encrypt(self.padding.pad(data, 16), self.key, self.iv)
     
 
-    def isAdmin(self, data: bytearray):
+    def isAdmin(self, data: bytearray)->bool:
         dec = self.padding.unpad(self.aes.decrypt(data, self.key, self.iv))
         return dec.find(b';admin=true;') != -1
     
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     enc[16] ^= 99
     enc[22] ^= 100
     enc[27] ^= 99
-    print(oracle.isAdmin(enc))
+    print('Is admin:', oracle.isAdmin(enc))
 
 
 
