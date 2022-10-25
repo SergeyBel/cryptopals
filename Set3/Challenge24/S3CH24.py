@@ -31,22 +31,9 @@ class MersenneCtr:
         length = min(len(x), len(y))
         for i in range(length):
             c.append(x[i] ^ y[i])
-        
-        
         return c
 
-def test():
-    key = 0xabcd
-    data = bytearray('message', 'ascii')
-    ctr = MersenneCtr()
-    print('Data', data)
-    encrypted = ctr.encrypt(data, key)
-    print('Encrypted', encrypted)
-    decrypted = ctr.decrypt(encrypted, key)
-    print('Decrypted', decrypted)
-
 if __name__ == "__main__":
-    test()
 
     key = random.randint(0, 0xffff)
     ctr = MersenneCtr()
@@ -58,7 +45,9 @@ if __name__ == "__main__":
     for k in range(0xffff):
         decrypted = ctr.decrypt(encrypted, k)
         if decrypted.find(part) != -1:
-            print(key, decrypted)
+            print('Key:', key)
+            print('Decrypted:', decrypted)
+            break
 
 
 
