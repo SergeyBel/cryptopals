@@ -11,7 +11,7 @@ from FileReader import FileReader
 
 
 class AesCbc():
-    def encrypt(self, data: bytearray, key: bytearray, iv: bytearray):
+    def encrypt(self, data: bytearray, key: bytearray, iv: bytearray)->bytearray:
         aes = AesEcb()
         encrypted = bytearray()
         blockSize = 16
@@ -23,7 +23,7 @@ class AesCbc():
             previous = encryptedBlock
         return encrypted
     
-    def decrypt(self, encrypted: bytearray, key: bytearray, iv: bytearray):
+    def decrypt(self, encrypted: bytearray, key: bytearray, iv: bytearray)->bytearray:
         aes = AesEcb()
         decrypted = bytearray()
         blockSize = 16
@@ -40,8 +40,9 @@ if __name__ == "__main__":
     a = AesCbc()
     data = f.readBase64Line('input.txt')
     key = b'YELLOW SUBMARINE'
-    iv = bytearray(0x0 for i in range(16))
-    print(a.decrypt(data, key, iv))
+    iv = bytearray(b'\x00') * 16
+    print('Decryped:')
+    print(a.decrypt(data, key, iv).decode('ascii'))
 
 
 
