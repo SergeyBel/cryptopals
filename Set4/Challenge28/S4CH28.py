@@ -12,7 +12,7 @@ class Sha1:
 
         return self.processData(state, paddedData)
     
-    def processData(self, state: list, paddedData: bytearray):
+    def processData(self, state: list, paddedData: bytearray)->bytearray:
         for i in range(0, len(paddedData), 64):
             state = self.__processBlock(state, paddedData[i: i + 64])
         
@@ -104,10 +104,10 @@ class Sha1PrefixMac():
 if __name__ == "__main__":
     sha1 = Sha1()
 
-    print(sha1.hash(bytearray('The quick brown fox jumps over the lazy dog', 'ascii')).hex())
+    print('The quick brown fox...:', sha1.hash(bytearray('The quick brown fox jumps over the lazy dog', 'ascii')).hex())
 
     mac  = Sha1PrefixMac()
     key = b"YELLOW SUBMARINE"
 
-    print(mac.mac(key, b"SOME MESSAGE").hex())
-    print(mac.mac(key, b"ANOTHER MESSAGE").hex())
+    print('SOME MESSAGE:', mac.mac(key, b"SOME MESSAGE").hex())
+    print('ANOTHER MESSAGE:',mac.mac(key, b"ANOTHER MESSAGE").hex())
