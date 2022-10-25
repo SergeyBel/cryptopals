@@ -13,7 +13,7 @@ class CtrBitFlipOracle:
         self.nonce = Random().getInt(0, 10)
         self.aes = AesCtr()
     
-    def encrypt(self, text: str):
+    def encrypt(self, text: str)->bytearray:
         prefix = 'comment1=cooking%20MCs;userdata='
         postfix = ';comment2=%20like%20a%20pound%20of%20bacon'
         text = text.replace('=', "'='")
@@ -36,6 +36,6 @@ if __name__ == "__main__":
     enc[32] ^= 99
     enc[38] ^= 100
     enc[43] ^= 99
-    print(oracle.isAdmin(enc))
+    print('Is admin:', oracle.isAdmin(enc))
 
 
