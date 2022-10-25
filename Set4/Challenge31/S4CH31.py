@@ -16,13 +16,13 @@ class HmacSha1:
         self.ipad = bytearray.fromhex('36'  * self.b)
         self.opad = bytearray.fromhex('5c' * self.b)
     
-    def hmac(self, data: bytearray, key: bytearray):
+    def hmac(self, data: bytearray, key: bytearray)->bytearray:
         k0 = self.__alignKey(key)
 
         return self.sha1.hash(xorBytes(k0, self.opad) + self.sha1.hash(xorBytes(k0, self.ipad) + data))
 
     
-    def __alignKey(self, key: bytearray):
+    def __alignKey(self, key: bytearray)->bytearray:
         if len(key) > self.b:
             return self.sha1.hash(key) + bytearray.fromhex('00' * (self.b - self.L))
         elif len(key) < self.b:
@@ -36,10 +36,10 @@ class HmacTimeOracle:
         self.hmac = HmacSha1()
         self.key = b"YELLOW SUBMARINE"
 
-    def verify(self, data, signature):
+    def verify(self, data: bytearray, signature: bytearray)->bool:
         return self.__insecureEquals(self.hmac.hmac(data, self.key), signature)
         
-    def __insecureEquals(self, x: bytearray, y: bytearray):
+    def __insecureEquals(self, x: bytearray, y: bytearray)->bool:
         for i in range(20):
             if x[i] != y[i]:
                 return False
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         signature[i] = nextByte
         print('Signature:', i, signature.hex())
     
-    print('Signature verify', oracle.verify(text, signature))
+    print('Signature verify:', oracle.verify(text, signature))
 
 
     
