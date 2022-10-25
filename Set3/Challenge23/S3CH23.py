@@ -9,7 +9,7 @@ from S3CH21 import MersenneTwister
 BITS_LENGTH = 32
 
 
-def intToBits(x):
+def intToBits(x)->list:
     bits = [0] * BITS_LENGTH
     i = 0
     while x > 0:
@@ -18,7 +18,7 @@ def intToBits(x):
         i += 1
     return bits
 
-def bitsToInt(bits):
+def bitsToInt(bits)->int:
     x = 0
     bits.reverse()
     for b in bits:
@@ -28,7 +28,7 @@ def bitsToInt(bits):
 
 
 # revert x = y ^ ((y << k) & m)
-def revertLeft(x, k, m):
+def revertLeft(x, k, m)->int:
     xBits = intToBits(x)
     mBits = intToBits(m)
     yBits = [0] * BITS_LENGTH
@@ -43,7 +43,7 @@ def revertLeft(x, k, m):
 
 
 # revert x = y ^ ((y >> k) & m)
-def revertRight(x, k, m):
+def revertRight(x, k, m)->int:
     xBits = intToBits(x)
     mBits = intToBits(m)
     yBits = [0] * BITS_LENGTH
