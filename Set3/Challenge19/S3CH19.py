@@ -17,7 +17,7 @@ class CtrOracle:
         self.key = key
         self.ctr = AesCtr()
     
-    def encrypt(self, data, nonce):
+    def encrypt(self, data, nonce)->bytearray:
         return self.ctr.encrypt(data, self.key, nonce)
 
 if __name__ == "__main__":
