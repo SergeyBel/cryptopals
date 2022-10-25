@@ -40,6 +40,7 @@ if __name__ == "__main__":
                 answer.append(ord(c))
                 break
     
+    print('Decrypted:')
     print(answer.decode('ascii'))
 
     
