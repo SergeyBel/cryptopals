@@ -12,7 +12,7 @@ class RsaParityOracle:
     def __init__(self) -> None:
         self.rsa = Rsa(512)
     
-    def isEven(self, number):
+    def isEven(self, number: int)->bool:
         decrypted = self.rsa.decrypt(number)
         return decrypted % 2 == 0
 
@@ -42,6 +42,7 @@ if __name__ == "__main__":
             start = (start + finish) / 2
     
     findedNumber = int(finish)
-    print('Find number', findedNumber)
-    print('As text', converter.intToBytes(findedNumber))
-    print('Initial text: ', text)
+    findedText = converter.intToBytes(findedNumber).strip(b'\x00')
+    print('Find number:', findedNumber)
+    print('As text:', findedText)
+    print('Text equals:: ', text == findedText)
