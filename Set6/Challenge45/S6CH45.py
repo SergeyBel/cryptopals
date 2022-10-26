@@ -34,7 +34,7 @@ if __name__ == "__main__":
     r = pow(y, z, p) % q
     s = r * pow(z, -1, q) % q
     print('Verify text: ', dsa.verify(sha1.hash(b'Hello, world'), r, s))
-    print('Verify text: ', dsa.verify(sha1.hash(b'Goodbye, world'), r, s))
+    print('Verify another text: ', dsa.verify(sha1.hash(b'Goodbye, world'), r, s))
 
 
 
