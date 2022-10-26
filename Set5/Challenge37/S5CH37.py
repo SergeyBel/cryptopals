@@ -4,7 +4,7 @@ import hashlib
 sys.path.append('../../Set5/Challenge36')
 sys.path.append('../../Common')
 
-from S5CH36 import SreClient, SreServer
+from S5CH36 import SreServer
 from IntConverter import IntConverter
 
 if __name__ == "__main__":
@@ -30,6 +30,6 @@ if __name__ == "__main__":
     key = hashlib.sha256(IntConverter().intToBytes(0)).digest()
 
 
-    print("Server key:", server.key.hex())
-    print("Zero key:", key.hex())
-    print(server.key == key)
+    print('Server key:', server.key.hex())
+    print('Zero key:', key.hex())
+    print('Keys equals:', server.key == key)
