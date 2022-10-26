@@ -9,7 +9,7 @@ from Random import Random
 from IntConverter import IntConverter
 
 class SreServer:
-    def __init__(self, n, g, k) -> None:
+    def __init__(self, n: int, g: int, k: int) -> None:
         self.n = n
         self.g = g
         self.k = k
@@ -20,7 +20,7 @@ class SreServer:
         self.v = None
         self.key = None
 
-    def inizialize(self, password: bytearray):
+    def inizialize(self, password: bytearray)->None:
         self.salt = self.random.getInt(1, self.n - 1)
         x = self.converter.bytesToInt(self.hash.sha256(self.converter.intToBytes(self.salt) + password).digest())
         self.v = pow(self.g, x, self.n)
@@ -35,7 +35,7 @@ class SreServer:
 
 
 class SreClient:
-    def __init__(self, n, g, k) -> None:
+    def __init__(self, n: int, g: int, k: int) -> None:
         self.n = n
         self.g = g
         self.k = k
@@ -46,13 +46,13 @@ class SreClient:
         self.pubA = None
         self.password = None
     
-    def inizialize(self, password):
+    def inizialize(self, password: bytearray)->int:
         self.password = password
         self.a = self.random.getInt(1, self.n - 1)
         self.pubA = pow(self.g, self.a, self.n)
         return self.pubA
     
-    def generateKey(self, pubB, salt):
+    def generateKey(self, pubB: int, salt: int)->None:
         u = self.converter.bytesToInt(self.hash.sha256(self.converter.intToBytes(self.pubA) + self.converter.intToBytes(pubB)).digest())
         x = self.converter.bytesToInt(self.hash.sha256(self.converter.intToBytes(salt) + self.password).digest())
         s = pow(pubB - self.k * pow(self.g, x, self.n), self.a + u * x, self.n)
@@ -86,4 +86,4 @@ if __name__ == "__main__":
 
     print("Server key:", server.key.hex())
     print("Client key:", client.key.hex())
-    print(server.key == client.key)
+    print('Keys equals:', server.key == client.key)
