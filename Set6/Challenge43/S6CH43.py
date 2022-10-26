@@ -19,17 +19,17 @@ class Dsa:
         self.converter = IntConverter()
         self.generateKeys()
     
-    def generateKeys(self):
+    def generateKeys(self)->None:
         self.x = self.random.getInt(1, self.q - 1)
         self.y = pow(self.g, self.x, self.p)
     
-    def setParameters(self, p, g, q):
+    def setParameters(self, p: int, g: int, q: int)->None:
         self.p = p
         self.g = g
         self.q = q
         self.generateKeys()
     
-    def setY(self):
+    def setY(self)->None:
         self.y = y
 
     
@@ -45,7 +45,7 @@ class Dsa:
         return r, s
         
     
-    def verify(self, hash, r, s):
+    def verify(self, hash: bytearray, r: int, s: int)->bool:
         h = self.converter.bytesToInt(hash)
         w = pow(s, -1, self.q)
         u1 = h * w % self.q
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         if pow(g, x, p) == y:
             print ('Find key', x)
             print ('Key hash: ', sha1.hash(hex(x)[2:].encode()).hex())
-            print ('Public key check: ', hex(pow(g, x, p)))
+            print ('Public key correct: ', pow(g, x, p) == y)
             break
 
 
