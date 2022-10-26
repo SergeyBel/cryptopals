@@ -11,13 +11,13 @@ from S4CH28 import Sha1
 
 
 class BleichenbacherOracle:
-    def __init__(self, rsa: Rsa) -> None:
+    def __init__(self, rsa: Rsa)->None:
         self.converter = IntConverter()
         self.rsa = rsa
         self.hashLen = 20
         self.hash = Sha1()        
     
-    def verify(self, signature, message):
+    def verify(self, signature:int, message: bytearray)->bool:
         packet = self.converter.intToBytes(self.rsa.encrypt(signature))
 
         index = packet.index(b'\x00\x01')
