@@ -16,13 +16,13 @@ class DiffieHellman:
         self.generateSecretkey()
         self.generatePublicKey()
 
-    def generateSecretkey(self):
+    def generateSecretkey(self)->None:
         self.secretKey = self.random.getInt(1, self.p - 1)
     
-    def generatePublicKey(self):
+    def generatePublicKey(self)->None:
         self.publicKey = pow(self.g, self.secretKey, self.p)
     
-    def generateSessionKey(self, publicKey):
+    def generateSessionKey(self, publicKey: int)->int:
         return pow(publicKey, self.secretKey, self.p)
     
 
