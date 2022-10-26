@@ -5,8 +5,6 @@ sys.path.append('../../Set5/Challenge39')
 from S5CH39 import Rsa
 
 
-
-
 if __name__ == "__main__":
     rsa1  = Rsa()
     rsa2  = Rsa()
@@ -31,6 +29,6 @@ if __name__ == "__main__":
 
     
     
-    print('Attack correct:', m == message)
+    print('Find message correct:', m == message)
 
 
