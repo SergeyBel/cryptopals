@@ -1,8 +1,6 @@
 import sys
 import hashlib
 
-
-
 sys.path.append('../../Common')
 sys.path.append('../../Set5/Challenge36')
 
@@ -12,7 +10,7 @@ from IntConverter import IntConverter
 from Random import Random
 
 class SimplySreClient:
-    def __init__(self, n, g) -> None:
+    def __init__(self, n: int, g: int) -> None:
         self.n = n
         self.g = g
         self.random = Random()
@@ -22,13 +20,13 @@ class SimplySreClient:
         self.pubA = None
         self.password = None
     
-    def inizialize(self, password):
+    def inizialize(self, password: bytearray)->int:
         self.password = password
         self.a = self.random.getInt(1, self.n - 1)
         self.pubA = pow(self.g, self.a, self.n)
         return self.pubA
     
-    def generateKey(self, pubB, salt, u):
+    def generateKey(self, pubB: int, salt: int, u: int)->None:
         x = self.converter.bytesToInt(self.hash.sha256(self.converter.intToBytes(salt) + self.password).digest())
         s = pow(pubB, self.a + u * x, self.n)
         self.key = self.hash.sha256(self.converter.intToBytes(s)).digest()
