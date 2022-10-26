@@ -9,50 +9,50 @@ from IntConverter import IntConverter
 
 
 class PkcsRsaOracle:
-    def __init__(self, k):
+    def __init__(self, k: int)->None:
         self.k = k
         bits = (k // 2) * 8
         self.rsa = Rsa(bits)
         self.converter = IntConverter()
     
-    def isCorrect(self, number):
+    def isCorrect(self, number: int)->bool:
         decrypt = self.rsa.decrypt(number)
         bytes = self.converter.intToBytes(decrypt, self.k)
         return bytes[0] == 0x00 and bytes[1] == 0x02
     
-def pkcsPad(data, k):
+def pkcsPad(data: bytearray, k:int)->bytearray:
     d = len(data)
     pad = b'\xff' * (k - d - 3)
     return b'\x00\x02' + pad + b'\x00' + data
 
 
 class Segment:
-    def __init__(self, a, b) -> None:
+    def __init__(self, a: int, b: int) -> None:
         self.a = a
         self.b = b
     
 
-    def length(self):
+    def length(self)->int:
         return self.b - self.a
     
-    def isPoint(self):
+    def isPoint(self)->bool:
         return self.length() == 0
     
-    def __str__(self) -> str:
+    def __str__(self)->str:
         return '[' + str(self.a) + ',' + str(self.b) + ']'
     
-    def __eq__(self, __o: object) -> bool:
+    def __eq__(self, __o: object)->bool:
         return self.a == __o.a and self.b == __o.b
     
-    def __hash__(self) -> int:
+    def __hash__(self)->int:
         return hash(str(self.a) + str(self.b))
 
 
-def ceil(x, y):
+def ceil(x, y)->int:
     return x // y + int(x % y != 0)
 
 
-def findS(start, oracle, c, e, n):
+def findS(start: int, oracle: PkcsRsaOracle, c: int, e: int, n: int)->int:
     s = start
     while True:
         cn = c * pow(s, e, n)
@@ -64,7 +64,7 @@ def findS(start, oracle, c, e, n):
     print('s=', s)
     return s
 
-def unionOneSegment(segment, s, n, B):
+def unionOneSegment(segment: Segment, s: int, n: int, B: int)->set:
     a = segment.a
     b = segment.b
 
@@ -83,7 +83,7 @@ def unionOneSegment(segment, s, n, B):
     
     return newSegments
 
-def union(M, s, n, B):
+def union(M: set, s: int, n: int, B: int)->set:
     newM = set()
     for segment in M:
         newM = newM.union(unionOneSegment(segment, s, n, B))
@@ -91,13 +91,13 @@ def union(M, s, n, B):
     return newM
 
 
-def printSegments(M):
+def printSegments(M: set)->None:
     for segment in M:
         print(segment, segment.length(),)
     print()
 
 
-def findSForOneSegment(a, b, sPrev, B, c, e, n):
+def findSForOneSegment(a: int, b: int, sPrev: int, B: int, c: int, e: int, n: int)->int:
     r = 2 * (b * sPrev - B) // n
 
     print('r=', r)
@@ -133,6 +133,7 @@ if __name__ == "__main__":
 
     s = findS(n // (3 * B), oracle, c, e, n)
     M = union(M, s, n, B)
+    print('S1 finded')
 
 
     while True:
@@ -153,8 +154,7 @@ if __name__ == "__main__":
             M = union(M, s, n, B)
             continue
     
-    print('Number=', number)
-    printSegments(M)
+    print('Find number correct:', M.pop().a == number)
     
     
 
