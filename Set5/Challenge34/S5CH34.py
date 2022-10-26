@@ -11,13 +11,13 @@ from S2CH10 import AesCbc
 from S4CH28 import Sha1
 
 class DiffieHellmanAes:
-    def __init__(self, p, g) -> None:
+    def __init__(self, p: int, g: int) -> None:
         self.dh = DiffieHellman(p, g)
         self.aes = AesCbc()
         self.sha1 = Sha1()
         self.iv = b"YELLOW SUBMARINE"
     
-    def encrypt(self, data, publicKey):
+    def encrypt(self, data: bytearray, publicKey: int):
         sessionKey = self.dh.generateSessionKey(publicKey)
         key = self.sha1.hash(sessionKey.to_bytes(16, 'big'))[:16]
         encrypted = self.aes.encrypt(data, key, self.iv)
