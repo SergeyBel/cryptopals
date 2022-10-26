@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     s = Random().getInt(2, 100)
     newC = (pow(s, e, n) * c) % n
-    print('Ciphertexts differ', c != newC)
+    print('Ciphertexts differ:', c != newC)
     p = (rsa.decrypt(newC) * pow(s, -1, n)) % n
-    print('Decrypt success',  p == message)
+    print('Decrypt success:',  p == message)
 
